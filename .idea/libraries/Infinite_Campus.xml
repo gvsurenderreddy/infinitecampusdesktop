@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Infinite Campus">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/jgoodies-forms-1.8.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/cssparser-0.9.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/jsoup-1.8.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/htmlunit-2.19-bin.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/jgoodies-forms-1.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Infinite Campus/commons-logging-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
