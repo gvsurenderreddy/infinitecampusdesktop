@@ -5,11 +5,14 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -17,7 +20,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.nio.file.*;
@@ -32,12 +34,30 @@ public class LoginGUI extends Application {
     private static PrintWriter urlfile;
 
     public static void main(String[] args) throws IOException {
-        launch(args);
+        new JFXPanel();
+        File exists = new File("./.url.txt");
+        File existsu = new File("./.username.txt");
+        File existspw = new File("./.password.txt");
+
+        if (exists.exists() && existsu.exists() && existspw.exists()) {
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    try {
+                        new GradesGUI().start(new Stage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } else {
+            launch(args);
+        }
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException, FileNotFoundException{
-
         primaryStage.setTitle("Infinite Campus");
 
         GridPane grid = new GridPane();
@@ -53,11 +73,14 @@ public class LoginGUI extends Application {
         scenetitle.setFont(Font.font("Tahoma", FontWeight.SEMI_BOLD, 30));
         grid.add(scenetitle, 0, 0, 2, 1);
 
+// TODO Implement Other URL's later
+/*
         Label CampusUrl = new Label("Infinite Campus Url:");
         grid.add(CampusUrl, 0, 1);
 
         TextField urlTextField = new TextField();
         grid.add(urlTextField, 1, 1);
+*/
 
         Label userName = new Label("User Name:");
         grid.add(userName, 0, 2);
@@ -71,13 +94,6 @@ public class LoginGUI extends Application {
         PasswordField pwBox = new PasswordField();
         grid.add(pwBox, 1, 3);
 
-
-        CheckBox cb2 = new CheckBox("Remember Me");
-        HBox hbcb = new HBox(10);
-        hbcb.setAlignment(Pos.BOTTOM_LEFT);
-        hbcb.getChildren().add(cb2);
-        grid.add(hbcb, 0, 4);
-
         Button btn = new Button("Sign in");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
@@ -87,8 +103,8 @@ public class LoginGUI extends Application {
         primaryStage.show();
 
         btn.setOnAction(e -> {
-            String url = urlTextField.getText();
-            Boolean inputsave = cb2.isSelected();
+            String url = "https://ic.d214.org/campus/township_214.jsp"; /*urlTextField.getText();*/
+            Boolean inputsave = true;
             File exists = new File("./.url.txt");
 
             if(!(exists.exists())){
@@ -141,6 +157,18 @@ public class LoginGUI extends Application {
                 } else {
                 }
             }
+
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    try {
+                        new GradesGUI().start(new Stage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             primaryStage.close();
 
         });
